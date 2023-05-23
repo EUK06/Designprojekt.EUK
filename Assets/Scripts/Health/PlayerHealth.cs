@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class PlayerHealth : MonoBehaviour
     public float chipSpeed = 2f;
     public Image frontHealthBar;
     public Image backHealthBar;
+    public GameManager gameManager;
 
     // Start is called before the first frame update
     void Start()
@@ -30,6 +32,11 @@ public class PlayerHealth : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.H))
         {
             RestoreHealth(Random.Range(5, 10));
+        }
+
+        if (health <= 0f)
+        {
+            GameOver();
         }
 
     }
@@ -79,6 +86,12 @@ public class PlayerHealth : MonoBehaviour
             TakeDamage(Random.Range(5, 10));
         }
 
+    }
+  
+    void GameOver()
+    {
+        gameManager.ResetScore();
+        SceneManager.LoadScene("GameOver");
     }
 
 }

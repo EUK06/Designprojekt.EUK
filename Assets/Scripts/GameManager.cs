@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -34,8 +35,8 @@ public class GameManager : MonoBehaviour
 
     public void AddScore(int scoreValue)
     {
-        if (isGameOver)
-            return;
+        
+            
 
         score += scoreValue;
         Debug.Log("Score: " + score);
@@ -48,8 +49,18 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void ResetScore()
+    {
+        score = 0;
+        Debug.Log("Score reset!");
+    }
+
     public void Update()
     {
-       
+        if (isGameOver)
+        {
+            ResetScore();
+            SceneManager.LoadScene(3);
+        }
     }
 }
