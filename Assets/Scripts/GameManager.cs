@@ -45,7 +45,9 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log("Congratulations! You've collected all objects!");
             isGameOver = true;
-            // Add code to handle game over or victory condition here
+            ResetScore();
+            SceneManager.LoadScene(3);
+            
         }
     }
 
@@ -55,12 +57,5 @@ public class GameManager : MonoBehaviour
         Debug.Log("Score reset!");
     }
 
-    public void Update()
-    {
-        if (isGameOver)
-        {
-            ResetScore();
-            SceneManager.LoadScene(3);
-        }
-    }
+    
 }
